@@ -1,9 +1,5 @@
-# Ultra-lightweight requirements for Vercel (under 250MB)
-# Core FastAPI only - no heavy AI dependencies
-
-fastapi==0.109.2
-uvicorn==0.27.1
-python-multipart==0.0.9
-python-dotenv==1.0.1
-requests==2.31.0
-pydantic==2.6.1
+# Minimal requirements for Vercel serverless functions
+fastapi
+uvicorn
+python-multipart
+pydantic
