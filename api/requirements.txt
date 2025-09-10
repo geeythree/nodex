@@ -1,31 +1,9 @@
-# Python 3.12 Compatible Dependencies for Vercel Deployment
+# Ultra-lightweight requirements for Vercel (under 250MB)
+# Core FastAPI only - no heavy AI dependencies
 
-# Core API framework - Latest stable versions for Python 3.12
-fastapi>=0.104.0,<1.0.0
-uvicorn[standard]>=0.24.0,<1.0.0
-
-# AI and workflow processing - Python 3.12 compatible
-crewai>=0.28.0
-openai>=1.12.0
-langchain-core>=0.1.0
-
-# Data handling - Python 3.12 native support
-pydantic>=2.5.0,<3.0.0
-pydantic-settings>=2.1.0
-python-multipart>=0.0.6
-
-# File and data processing
-PyYAML>=6.0
-aiofiles>=23.2.0
-pillow>=10.0.0
-
-# Utilities with Python 3.12 support
-python-dotenv>=1.0.0
-requests>=2.31.0
-typing-extensions>=4.8.0
-
-# Logging
-loguru>=0.7.0
-
-# HTTP client for API calls
-httpx>=0.25.0
+fastapi==0.109.2
+uvicorn==0.27.1
+python-multipart==0.0.9
+python-dotenv==1.0.1
+requests==2.31.0
+pydantic==2.6.1
