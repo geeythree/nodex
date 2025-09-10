@@ -6,8 +6,8 @@
 // Get API base URL based on environment
 const getApiBaseUrl = (): string => {
   // Check for Vite environment variable (for Vercel deployment)
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+  if ((import.meta as any).env?.VITE_API_URL) {
+    return (import.meta as any).env.VITE_API_URL;
   }
   
   // Check for deployment on Vercel (same domain deployment)
@@ -33,6 +33,6 @@ export const API_ENDPOINTS = {
 
 console.log('API Configuration:', {
   baseUrl: API_BASE_URL,
-  environment: import.meta.env.MODE,
+  environment: (import.meta as any).env?.MODE || 'unknown',
   hostname: typeof window !== 'undefined' ? window.location.hostname : 'server'
 });

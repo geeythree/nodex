@@ -884,14 +884,7 @@ const App: React.FC = () => {
         }
     }, [isProcessing, workflowId]);
 
-    // Handle image upload
-    const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        // Clear the file input
-        event.target.value = '';
-
-        // Show message about limited processing power
-        alert('⚠️ We currently cannot support image uploads due to limited processing power. Please create your workflow using the one of the templates instead.');
-    }, []);
+    // Image upload handler removed - not currently used
 
     // Process uploaded image
     const processImageWorkflow = useCallback(async () => {
@@ -1026,7 +1019,7 @@ const App: React.FC = () => {
 This project contains ${generatedAPIs.apis.length} microservices generated from your visual workflow.
 
 ## API Endpoints
-${generatedAPIs.apis.map((api: any, i: number) => `- ${api.nodeName}: ${api.method} ${api.endpoint}`).join('\n')}
+${generatedAPIs.apis.map((api: any) => `- ${api.nodeName}: ${api.method} ${api.endpoint}`).join('\n')}
 - Orchestrator: POST /workflow/execute
 
 ## Quick Start
@@ -1052,7 +1045,7 @@ Generated with Nodex - Visual Workflows to Production APIs
         }
     }, [generatedAPIs]);
 
-    // Execute workflow
+    // Execute workflow - Reserved for future functionality
     const executeWorkflow = useCallback(() => {
         // Simulate execution
         setNodes(nds => nds.map(node => ({
@@ -1061,6 +1054,9 @@ Generated with Nodex - Visual Workflows to Production APIs
         })));
         addChatMessage('assistant', 'Workflow executed successfully!');
     }, [setNodes, addChatMessage]);
+    
+    // Mark as used to prevent TypeScript warning
+    void executeWorkflow;
 
     // Clear canvas
     const clearCanvas = useCallback(() => {
@@ -2274,14 +2270,14 @@ Generated with Nodex - Visual Workflows to Production APIs
                     </div>
                 )}
 
-                {/* Generated Code View Modal */}
-                {false && generatedAPIs && (
+                {/* Generated Code View Modal - Disabled for now */}
+                {false && (
                     <div className="processing-overlay">
                         <div className="processing-content" style={{ maxWidth: '1200px', width: '95%', maxHeight: '90vh', overflow: 'auto' }}>
                             <div className="flex items-center justify-between mb-4">
                                 <h2>🤖 Generated API Services</h2>
                                 <button
-                                    onClick={() => setShowCodeModal(false)}
+                                    onClick={() => {/* Modal disabled */}}
                                     className="btn btn-secondary"
                                     style={{ padding: '8px 12px' }}
                                 >
