@@ -16,9 +16,5 @@
       "src": "/(.*)",
       "dest": "api/main.py"
     }
-  ],
-  "env": {
-    "OPENAI_API_KEY": "@openai_api_key",
-    "CREWAI_MODEL": "@crewai_model"
-  }
+  ]
 }
