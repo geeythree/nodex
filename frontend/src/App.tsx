@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { API_ENDPOINTS } from './config/api';
 import ReactFlow, {
     Node,
     useNodesState,
@@ -805,7 +806,7 @@ const App: React.FC = () => {
         setWorkflowId(newWorkflowId);
 
         try {
-            const response = await fetch('http://localhost:8000/api/interpret', {
+            const response = await fetch(API_ENDPOINTS.INTERPRET, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -865,7 +866,7 @@ const App: React.FC = () => {
 
             const pollProgress = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8000/api/progress/${workflowId}`);
+                    const response = await fetch(API_ENDPOINTS.PROGRESS(workflowId));
                     if (response.ok) {
                         const progress = await response.json();
                         // Progress received
@@ -901,7 +902,7 @@ const App: React.FC = () => {
 
         try {
 
-            const response = await fetch('http://localhost:8000/api/parse-image', {
+            const response = await fetch(API_ENDPOINTS.PARSE_IMAGE, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
