@@ -1,6 +1,6 @@
 """
-Simplified SecureAI API for Vercel deployment.
-Fixed version to prevent FUNCTION_INVOCATION_FAILED errors.
+SecureAI API - Vercel Compatible Version
+Proper ASGI handler for Vercel serverless functions.
 """
 
 from fastapi import FastAPI, HTTPException
@@ -241,17 +241,6 @@ async def get_progress(workflow_id: str):
         "progress": 100,
         "stage": "finished"
     }
-
-# For Vercel
-def handler(event, context):
-    """Vercel serverless function handler."""
-    try:
-        return app(event, context)
-    except Exception as e:
-        return {
-            "statusCode": 500,
-            "body": json.dumps({"error": str(e)})
-        }
 
 # For local development
 if __name__ == "__main__":
