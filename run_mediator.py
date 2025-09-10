@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-SecureAI Mediator Agent Startup Script
-Production-ready Mediator agent with voice integration and React Flow management
+Mediator Agent Startup Script
 """
 
 import os
