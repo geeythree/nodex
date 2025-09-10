@@ -1054,7 +1054,7 @@ Generated with Nodex - Visual Workflows to Production APIs
         })));
         addChatMessage('assistant', 'Workflow executed successfully!');
     }, [setNodes, addChatMessage]);
-    
+
     // Mark as used to prevent TypeScript warning
     void executeWorkflow;
 
@@ -1995,10 +1995,10 @@ Generated with Nodex - Visual Workflows to Production APIs
                 {/* Prompt Library Modal */}
                 {showPromptLibrary && (
                     <div className="processing-overlay" style={{ background: 'rgba(0, 0, 0, 0.9)' }}>
-                        <div className="processing-content" style={{ 
-                            maxWidth: '800px', 
-                            width: '90%', 
-                            maxHeight: '80vh', 
+                        <div className="processing-content" style={{
+                            maxWidth: '800px',
+                            width: '90%',
+                            maxHeight: '80vh',
                             overflow: 'auto',
                             background: '#000',
                             color: '#fff',
@@ -2041,24 +2041,24 @@ Generated with Nodex - Visual Workflows to Production APIs
                                         }}
                                     >
                                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                                            <span style={{ 
-                                                fontSize: '20px', 
+                                            <span style={{
+                                                fontSize: '20px',
                                                 flexShrink: 0,
                                                 marginTop: '2px'
                                             }}>
                                                 📋
                                             </span>
                                             <div style={{ flex: 1 }}>
-                                                <p style={{ 
-                                                    margin: 0, 
+                                                <p style={{
+                                                    margin: 0,
                                                     lineHeight: '1.5',
                                                     fontSize: '14px'
                                                 }}>
                                                     {prompt}
                                                 </p>
-                                                <div style={{ 
-                                                    marginTop: '8px', 
-                                                    fontSize: '12px', 
+                                                <div style={{
+                                                    marginTop: '8px',
+                                                    fontSize: '12px',
                                                     color: '#888',
                                                     fontStyle: 'italic'
                                                 }}>
@@ -2259,7 +2259,7 @@ Generated with Nodex - Visual Workflows to Production APIs
                                     📦 Download Project
                                 </button>
                                 <button
-                                    onClick={() => alert('⚠️ Cloud deployment is currently unavailable due to limited space. Please download the project and deploy manually to your preferred cloud provider.')}
+                                    onClick={() => alert('⚠️ Cloud deployment is currently unavailable. Please download the project and deploy manually to your preferred cloud provider.')}
                                     className="btn btn-purple"
                                     style={{ backgroundColor: '#8B5CF6', color: 'white' }}
                                 >
@@ -2277,7 +2277,7 @@ Generated with Nodex - Visual Workflows to Production APIs
                             <div className="flex items-center justify-between mb-4">
                                 <h2>🤖 Generated API Services</h2>
                                 <button
-                                    onClick={() => {/* Modal disabled */}}
+                                    onClick={() => {/* Modal disabled */ }}
                                     className="btn btn-secondary"
                                     style={{ padding: '8px 12px' }}
                                 >
