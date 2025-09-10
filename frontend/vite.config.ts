@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
             open: true
         },
         build: {
-            outDir: 'build',
+            outDir: 'dist',
             sourcemap: true
         }
     }
