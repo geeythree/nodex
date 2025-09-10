@@ -1,22 +1,22 @@
 # Core API framework
-fastapi==0.104.1
-uvicorn==0.24.0
+fastapi
+uvicorn
 
 # AI and workflow processing
-crewai>=0.28.0
+crewai
 openai
 
 # Data handling
-pydantic>=2.0.0
+pydantic
 pyyaml
-python-multipart==0.0.6
+python-multipart
 
 # Utilities
-python-dotenv==1.0.0
-requests==2.31.0
-aiofiles==23.2.0
+python-dotenv
+requests
+aiofiles
 typing-extensions
-loguru==0.7.3
+loguru
 
 # Optional caching (Redis-based caching can be added later)
 # redis
