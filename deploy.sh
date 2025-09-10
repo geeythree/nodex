@@ -23,10 +23,25 @@ fi
 
 echo ""
 echo "Choose deployment option:"
-echo "1. Deploy Backend only"
-echo "2. Deploy Frontend only"
-echo "3. Deploy Both (Full Stack)"
-read -p "Enter your choice (1-3): " choice
+echo "1. Deploy/Redeploy Backend only"
+echo "2. Deploy/Redeploy Frontend only"
+echo "3. Deploy/Redeploy Both (Full Stack)"
+echo "4. Just redeploy existing projects (no new deployments)"
+read -p "Enter your choice (1-4): " choice
+
+# Function to redeploy existing project
+redeploy_existing() {
+    local project_name=$1
+    echo "🔄 Redeploying existing project: $project_name"
+    
+    # Try to redeploy using project name
+    if vercel --prod --yes; then
+        echo "✅ Successfully redeployed $project_name"
+    else
+        echo "⚠️  Direct redeploy failed, trying fresh deployment..."
+        vercel --prod
+    fi
+}
 
 case $choice in
     1|3)
@@ -36,18 +51,18 @@ case $choice in
         
         # Check if .env file exists
         if [ ! -f .env ]; then
-            echo "⚠️  No .env file found. Please create one with your OPENAI_API_KEY"
-            echo "📝 Example: cp .env.example .env"
-            read -p "Continue anyway? (y/N): " continue_backend
-            if [[ $continue_backend != "y" && $continue_backend != "Y" ]]; then
-                exit 1
-            fi
+            echo "⚠️  No .env file found. Backend will use environment variables from Vercel dashboard"
+            echo "📝 Make sure to set OPENAI_API_KEY in Vercel dashboard"
         fi
         
-        # Deploy backend
-        vercel --prod
+        # Deploy backend (this will redeploy if project exists)
+        if vercel --prod --yes; then
+            echo "✅ Backend deployed/redeployed successfully!"
+        else
+            echo "⚠️  Deployment failed, trying interactive mode..."
+            vercel --prod
+        fi
         
-        echo "✅ Backend deployed successfully!"
         echo ""
         ;;
 esac
@@ -64,11 +79,45 @@ case $choice in
             npm install
         fi
         
-        # Deploy frontend
-        vercel --prod
+        # Deploy frontend (this will redeploy if project exists)
+        if vercel --prod --yes; then
+            echo "✅ Frontend deployed/redeployed successfully!"
+        else
+            echo "⚠️  Deployment failed, trying interactive mode..."
+            vercel --prod
+        fi
         
-        echo "✅ Frontend deployed successfully!"
         cd ..
+        echo ""
+        ;;
+esac
+
+case $choice in
+    4)
+        echo ""
+        echo "🔄 Redeploying existing projects..."
+        echo ""
+        
+        # Backend redeploy
+        echo "🔧 Redeploying Backend..."
+        if vercel --prod --yes; then
+            echo "✅ Backend redeployed successfully!"
+        else
+            echo "❌ Backend redeploy failed"
+        fi
+        
+        echo ""
+        
+        # Frontend redeploy
+        echo "🎨 Redeploying Frontend..."
+        cd frontend
+        if vercel --prod --yes; then
+            echo "✅ Frontend redeployed successfully!"
+        else
+            echo "❌ Frontend redeploy failed"
+        fi
+        cd ..
+        
         echo ""
         ;;
 esac
@@ -76,17 +125,24 @@ esac
 echo ""
 echo "🎉 Deployment Complete!"
 echo ""
-echo "📋 Next Steps:"
-echo "1. Go to https://vercel.com/dashboard"
-echo "2. Find your deployed projects"
-echo "3. Set up environment variables:"
-echo "   - Backend: OPENAI_API_KEY, CREWAI_MODEL"
-echo "   - Frontend: VITE_API_URL (pointing to your backend URL)"
-echo "4. Test your deployment!"
+echo "📋 Your Deployed URLs:"
+echo "Backend: Check https://vercel.com/dashboard for your backend URL"
+echo "Frontend: Check https://vercel.com/dashboard for your frontend URL"
+echo ""
+echo "🔧 Environment Variables Needed:"
+echo "Backend:"
+echo "  - OPENAI_API_KEY=your_openai_key (optional for lightweight version)"
+echo ""
+echo "Frontend:"
+echo "  - VITE_API_URL=https://your-backend-url.vercel.app"
+echo ""
+echo "📊 Quick Test:"
+echo "1. Visit your backend URL to see: {\"message\": \"SecureAI Lightweight API\"}"
+echo "2. Visit your frontend URL to see the full application"
 echo ""
 echo "🔗 Useful Commands:"
-echo "   vercel domains         # Manage custom domains"
-echo "   vercel env             # Manage environment variables"
+echo "   vercel ls              # List your deployments"
 echo "   vercel logs            # View deployment logs"
+echo "   vercel env             # Manage environment variables"
 echo ""
 echo "Happy deploying! 🚀"
