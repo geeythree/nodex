@@ -1,0 +1,18 @@
+domain: general
+required_steps:
+  - compliance_type: error_handling
+    label: Error Handling
+    reason: Required for system reliability
+    locked: true
+  - compliance_type: logging
+    label: Audit Logging
+    reason: Required for compliance tracking
+    locked: true
+  - compliance_type: monitoring
+    label: Process Monitoring
+    reason: Required for system oversight
+    locked: true
+compliance_rules: []
+stakeholders:
+  - user
+  - admin

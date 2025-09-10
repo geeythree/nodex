@@ -1,0 +1,46 @@
+{
+    "name": "secureai-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "reactflow": "^11.11.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "socket.io-client": "^4.7.5",
+        "lucide-react": "^0.427.0",
+        "web-vitals": "^4.2.3"
+    },
+    "scripts": {
+        "start": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "test": "vitest"
+    },
+    "devDependencies": {
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@types/node": "^22.5.4",
+        "@vitejs/plugin-react": "^4.3.1",
+        "typescript": "^5.5.4",
+        "vite": "^5.4.3",
+        "vitest": "^2.0.5",
+        "tailwindcss": "^3.4.10",
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.4.45",
+        "eslint": "^9.9.1",
+        "@typescript-eslint/eslint-plugin": "^8.4.0",
+        "@typescript-eslint/parser": "^8.4.0"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

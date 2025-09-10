@@ -1,0 +1,70 @@
+domain: Finance
+description: "Financial services compliance requirements for transaction processing"
+regulations:
+  - SOX
+  - PCI_DSS
+  - GDPR
+  - CCPA
+  - Basel_III
+
+required_steps:
+  - label: "Vendor Risk Assessment"
+    insert_before: "Process Payment"
+    compliance_type: "vendor_check"
+    locked: true
+    color: "#9B59B6"
+    reason: "Required by SOX Sec.404 - Assess third-party vendor compliance and risk profile"
+    validation_rules:
+      - "vendor_certification_check"
+      - "risk_score_evaluation"
+    
+  - label: "Fraud Detection"
+    insert_before: "Execute Transaction"
+    compliance_type: "fraud_check"
+    locked: true
+    color: "#E74C3C"
+    reason: "Required by PCI DSS 11.4 - Implement fraud detection mechanisms for all transactions"
+    validation_rules:
+      - "anomaly_detection"
+      - "velocity_checks"
+      - "blacklist_screening"
+      
+  - label: "Segregation of Duties"
+    insert_before: "Approve Payment"
+    compliance_type: "segregation"
+    locked: true
+    color: "#F39C12"
+    reason: "Required by SOX Sec.302 - Separate authorization, recording, and custody functions"
+    validation_rules:
+      - "multi_person_approval"
+      - "role_separation"
+      
+  - label: "Transaction Audit"
+    insert_after: "all"
+    compliance_type: "audit"
+    locked: true
+    color: "#3498DB"
+    reason: "Required by SOX/Basel III - Maintain immutable audit trail for all financial transactions"
+    validation_rules:
+      - "immutable_logging"
+      - "retention_policy_7_years"
+      - "regulatory_reporting"
+
+workflow_patterns:
+  expense_approval:
+    triggers: ["expense_claim", "reimbursement", "vendor_payment"]
+    mandatory_sequence:
+      - "Vendor Risk Assessment"
+      - "Policy Compliance Check"
+      - "Segregation of Duties"
+      - "Fraud Detection"
+      - "Transaction Audit"
+      
+  invoice_processing:
+    triggers: ["invoice_received", "ap_processing", "vendor_invoice"]
+    mandatory_sequence:
+      - "Vendor Risk Assessment"
+      - "Three Way Match"
+      - "Fraud Detection"
+      - "Segregation of Duties"
+      - "Transaction Audit"

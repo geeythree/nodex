@@ -1,0 +1,26 @@
+interpret_task:
+  description: >
+    Read the user's intent and output a numbered list of granular, actionable workflow steps, e.g.-- "1. Receive input, 2. Redact PII, 3. Send Email"
+  expected_output: >
+    1. Step one
+    2. Step two
+    etc.
+  agent: interpreter
+
+plan_task:
+  description: >
+    Order the steps, disambiguate if needed, and output a list best suited for direct automation.
+  expected_output: >
+    Ordered step list, one per line, ready to build as a workflow.
+  agent: planner
+  context:
+    - interpret_task
+
+visualize_task:
+  description: >
+    Map each step in the list to a node, and connect each node linearly in order. Output as JSON with nodes [{id, type, data:{label}, position}] and edges [{id, source, target}].
+  expected_output: >
+    JSON: { "nodes": [...], "edges": [...] }
+  agent: visualizer
+  context:
+    - plan_task

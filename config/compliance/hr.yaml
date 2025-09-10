@@ -1,0 +1,24 @@
+domain: hr
+required_steps:
+  - compliance_type: data_privacy
+    label: Employee Data Privacy
+    reason: Required for employee data protection (GDPR/CCPA)
+    locked: true
+  - compliance_type: background_check
+    label: Background Check Verification
+    reason: Required for employment verification compliance
+    locked: true
+  - compliance_type: audit_trail
+    label: HR Audit Trail
+    reason: Required for HR compliance tracking
+    locked: true
+compliance_rules:
+  - GDPR
+  - CCPA
+  - EEOC
+  - Fair Labor Standards Act
+stakeholders:
+  - employee
+  - hr_manager
+  - hr_administrator
+  - compliance_officer

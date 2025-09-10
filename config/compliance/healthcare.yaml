@@ -1,0 +1,27 @@
+domain: healthcare
+required_steps:
+  - compliance_type: patient_consent
+    label: Patient Consent Verification
+    reason: Required for HIPAA compliance
+    locked: true
+  - compliance_type: hipaa_audit
+    label: HIPAA Audit Trail
+    reason: Required for healthcare data protection
+    locked: true
+  - compliance_type: clinical_validation
+    label: Clinical Data Validation
+    reason: Required for medical data accuracy
+    locked: true
+  - compliance_type: phi_encryption
+    label: PHI Encryption
+    reason: Required for protected health information security
+    locked: true
+compliance_rules:
+  - HIPAA
+  - HITECH
+  - "FDA 21 CFR Part 11"
+stakeholders:
+  - patient
+  - provider
+  - administrator
+  - compliance_officer

@@ -1,0 +1,24 @@
+domain: sales
+required_steps:
+  - compliance_type: data_consent
+    label: Customer Data Consent
+    reason: Required for customer data collection compliance
+    locked: true
+  - compliance_type: contract_validation
+    label: Contract Validation
+    reason: Required for sales agreement compliance
+    locked: true
+  - compliance_type: revenue_tracking
+    label: Revenue Audit Trail
+    reason: Required for financial reporting compliance
+    locked: true
+compliance_rules:
+  - GDPR
+  - CCPA
+  - CAN-SPAM
+  - FTC Guidelines
+stakeholders:
+  - customer
+  - sales_rep
+  - sales_manager
+  - legal_team

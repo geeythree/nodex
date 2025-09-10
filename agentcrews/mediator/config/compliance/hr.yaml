@@ -1,0 +1,68 @@
+domain: HR
+description: "Human Resources compliance requirements for employee data processing"
+regulations:
+  - GDPR
+  - DPDP
+  - SOX
+  - HIPAA
+
+required_steps:
+  - label: "Consent Gate"
+    insert_before: "Validate Documents"
+    compliance_type: "consent"
+    locked: true
+    color: "#FFAE42"
+    reason: "Required by GDPR Art.6, DPDP Sec.7 - Must obtain explicit consent before processing personal data"
+    validation_rules:
+      - "consent_timestamp_required"
+      - "withdrawal_mechanism_available"
+    
+  - label: "PII Redaction"
+    insert_before: "Create Employee (HRIS)"
+    compliance_type: "pii_redact"
+    locked: true
+    color: "#FF6B6B"
+    reason: "Required by GDPR Art.30 - Personal data must be pseudonymized/anonymized where possible"
+    validation_rules:
+      - "identify_pii_fields"
+      - "apply_redaction_policy"
+      
+  - label: "Access Control Check"
+    insert_before: "Share Employee Data"
+    compliance_type: "access_control"
+    locked: true
+    color: "#4ECDC4"
+    reason: "Required by GDPR Art.32 - Implement appropriate technical measures for data security"
+    validation_rules:
+      - "role_based_access"
+      - "need_to_know_principle"
+      
+  - label: "Audit Trail"
+    insert_after: "all"
+    compliance_type: "audit"
+    locked: true
+    color: "#45B7D1"
+    reason: "Required by SOX/HIPAA - Maintain comprehensive audit logs for all data processing activities"
+    validation_rules:
+      - "log_all_access"
+      - "immutable_records"
+      - "retention_policy_7_years"
+
+workflow_patterns:
+  onboarding:
+    triggers: ["new_hire", "employee_creation", "hr_onboarding"]
+    mandatory_sequence:
+      - "Consent Gate"
+      - "Identity Verification"
+      - "PII Redaction"
+      - "HRIS Creation"
+      - "Access Control Check"
+      - "Audit Trail"
+      
+  offboarding:
+    triggers: ["employee_exit", "termination", "resignation"]
+    mandatory_sequence:
+      - "Access Revocation"
+      - "Data Retention Check"
+      - "PII Purge"
+      - "Audit Trail"

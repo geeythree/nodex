@@ -1,0 +1,28 @@
+domain: finance
+required_steps:
+  - compliance_type: kyc_verification
+    label: KYC Verification
+    reason: Required for customer identification compliance
+    locked: true
+  - compliance_type: aml_check
+    label: AML Screening
+    reason: Required for anti-money laundering compliance
+    locked: true
+  - compliance_type: fraud_detection
+    label: Fraud Detection
+    reason: Required for financial risk management
+    locked: true
+  - compliance_type: regulatory_reporting
+    label: Regulatory Reporting
+    reason: Required for financial regulations compliance
+    locked: true
+compliance_rules:
+  - SOX
+  - PCI-DSS
+  - "Basel III"
+  - GDPR
+stakeholders:
+  - customer
+  - advisor
+  - compliance_officer
+  - risk_manager
