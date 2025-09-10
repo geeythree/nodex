@@ -62,7 +62,6 @@ operations.yaml           # Operations compliance
 ### Prerequisites
 - **Python 3.8+**
 - **Node.js 18+**
-- **OpenAI API Key** (for GPT-4o and GPT-4o Vision)
 
 ### 1. Environment Setup
 
@@ -84,7 +83,6 @@ CREWAI_MODEL=gpt-4o  # Optional, defaults to gpt-4o
 ### 2. Backend Setup
 
 ```bash
-# Install Python dependencies
 pip install -r requirements.txt
 
 # Start the API server
@@ -412,103 +410,7 @@ curl -X POST "http://localhost:8000/api/interpret" \
 
 ## 📦 Deployment
 
-### 🚀 Vercel Deployment (Recommended)
-
-Vercel provides seamless deployment for both frontend and backend. Follow these steps:
-
-#### 1. Prerequisites
-- **Vercel Account**: Sign up at [vercel.com](https://vercel.com)
-- **GitHub Repository**: Push your code to GitHub
-- **OpenAI API Key**: Required for backend functionality
-
-#### 2. Backend Deployment
-```bash
-# 1. Install Vercel CLI
-npm install -g vercel
-
-# 2. Login to Vercel
-vercel login
-
-# 3. Deploy from project root
-cd /path/to/SecureAI
-vercel
-
-# 4. Follow prompts:
-# - Link to existing project or create new
-# - Set project name: "secureai-backend"
-# - Set build command: (leave default)
-# - Set output directory: (leave default)
-```
-
-**Environment Variables for Backend:**
-In Vercel dashboard → Project Settings → Environment Variables, add:
-```
-OPENAI_API_KEY=your_openai_api_key_here
-CREWAI_MODEL=gpt-4o
-```
-
-#### 3. Frontend Deployment
-```bash
-# 1. Navigate to frontend directory
-cd frontend
-
-# 2. Deploy frontend
-vercel
-
-# 3. Follow prompts:
-# - Set project name: "secureai-frontend"
-# - Framework preset: Vite
-# - Build command: npm run build
-# - Output directory: dist
-```
-
-**Environment Variables for Frontend:**
-```
-VITE_API_URL=https://your-backend-deployment.vercel.app
-```
-
-#### 4. GitHub Integration (Alternative)
-
-**Option A: Auto-Deploy from GitHub**
-1. Go to [vercel.com/dashboard](https://vercel.com/dashboard)
-2. Click "Add New..." → "Project"
-3. Import your GitHub repository
-4. **For Backend:**
-   - Root Directory: `/` (project root)
-   - Framework Preset: Other
-   - Build Command: (leave empty)
-   - Output Directory: (leave empty)
-
-5. **For Frontend:**
-   - Root Directory: `/frontend`
-   - Framework Preset: Vite
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-
-#### 5. Environment Configuration
-
-**Backend Environment Variables:**
-```bash
-# In Vercel Dashboard → Project → Settings → Environment Variables
-OPENAI_API_KEY=your_openai_api_key_here
-CREWAI_MODEL=gpt-4o
-ENVIRONMENT=production
-```
-
-**Frontend Environment Variables:**
-```bash
-# Point to your deployed backend
-VITE_API_URL=https://your-secureai-backend.vercel.app
-```
-
-#### 6. Custom Domains (Optional)
-```bash
-# Add custom domain in Vercel dashboard
-# Frontend: app.yourdomain.com
-# Backend: api.yourdomain.com
-```
-
-### 🐳 Docker Deployment (Alternative)
+### Docker Deployment
 ```bash
 # Build and run with Docker Compose
 docker-compose up -d
@@ -518,16 +420,13 @@ docker-compose up -d
 # - Frontend: localhost:3001
 ```
 
-### 🌐 Traditional Hosting
-```bash
-# Frontend (Static hosting - Netlify, AWS S3, etc.)
-cd frontend
-npm run build
-# Upload dist/ folder to your static host
-
-# Backend (VPS, AWS EC2, etc.)
-pip install -r requirements.txt
-python run_mediator.py
+### Environment Variables for Production
+```env
+OPENAI_API_KEY=prod_key_here
+CREWAI_MODEL=gpt-4o
+ENVIRONMENT=production
+LOG_LEVEL=INFO
+CORS_ORIGINS=https://your-domain.com
 ```
 
 ## 🤝 Contributing
@@ -583,14 +482,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Verify environment variables are set
 - Ensure OpenAI API key has sufficient credits
 - Check CORS settings for cross-origin issues
-
-### Community
-- 📧 Email: support@secureai.com
-- 💬 Discord: [SecureAI Community](https://discord.gg/secureai)
-- 📚 Wiki: [GitHub Wiki](https://github.com/secureai/wiki)
-
----
-
-**Built with ❤️ by the SecureAI Team**
-
-*Transforming business processes with AI-powered workflow intelligence.*
